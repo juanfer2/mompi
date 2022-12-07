@@ -10,3 +10,8 @@ development:
   <<: *default
   database: wompi_development
   password: 1234
+
+test:
+  <<: *default
+  database: wompi_test
+  password: 1234
