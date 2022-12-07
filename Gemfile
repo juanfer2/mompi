@@ -5,6 +5,11 @@ ruby '3.0.0'
 
 gem 'sinatra'
 
+# loads environment variables
+gem 'dotenv'
+
+
+
 # db
 gem 'pg', '1.2.3'
 gem 'activerecord'
@@ -17,6 +22,7 @@ gem 'json', '~> 2.6', '>= 2.6.3'
 gem 'httparty', '0.18.1'
 
 group :test, :development do
+  gem 'pry'
   gem 'pry-rails', '0.3.9'
   gem 'factory_bot_rails', '6.1.0'
   gem 'faker', '2.15.1'
