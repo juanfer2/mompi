@@ -1,4 +1,5 @@
 before { content_type :json }
 
 current_dir = Dir.pwd
-Dir["#{current_dir}/controllers/*.rb"].each { |file| require file }
+puts current_dir
+Dir["#{current_dir}/app/controllers/*.rb"].each { |file| require file }
