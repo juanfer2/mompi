@@ -1,0 +1,12 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  timeout: 5000
+  host: localhost
+
+development:
+  <<: *default
+  database: wompi_development
+  password: 1234
