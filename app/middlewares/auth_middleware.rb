@@ -11,7 +11,7 @@ helpers do
   end
 
   def current_driver
-    @current_user ||= begin 
+    @current_user ||= begin
       header_token = request.env['HTTP_AUTHORIZATION'].split(' ')
 
       Auth::FindDriverByTokenService.call(header_token[1])
@@ -19,7 +19,7 @@ helpers do
   end
 
   def current_user
-    @current_user ||= begin 
+    @current_user ||= begin
       header_token = request.env['HTTP_AUTHORIZATION'].split(' ')
 
       Auth::FindUserByTokenService.call(header_token[1])

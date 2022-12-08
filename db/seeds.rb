@@ -3,6 +3,7 @@ require_relative '../lib/wompi/wompi'
 require_relative '../config/wompi_setting'
 require_relative '../app/models/payment_source'
 require_relative '../app/services/v1/users/create_service'
+require_relative '../app/services/v1/users/create_payment_source_service'
 require_relative '../app/services/v1/drivers/create_service'
 
 puts '>>> Start Seed <<<'
@@ -21,17 +22,10 @@ users.map do | user |
   acceptance_token = Wompi.presigned_acceptance['acceptance_token']
   credit_card = { number: '4242424242424242', expiration_date: '2025/08', cvc: 777,
     card_holder: 'APPROVED'}
-  tokenization_product = Wompi.tokenization_product('credit_card', credit_card)['data']
-  wompi_payment_source = Wompi.create_payment_source(:card, tokenization_product['id'], user.email, 
-    acceptance_token)
 
-  if wompi_payment_source
-    payment_source = PaymentSource.create(user_id: user.id, name: tokenization_product['name'],
-      token_aceptation: acceptance_token, token_id: tokenization_product['id'], kind: :card,
-      wompi_payment_source_id: wompi_payment_source['id'])
-
-    puts "    -> payment_source: #{payment_source.name} - #{payment_source.token_id} - #{payment_source.kind}_#{payment_source.wompi_payment_source_id}"
-  end
+  payment_source = V1::Users::CreatePaymentSourceService.call(user, acceptance_token, :card,
+    credit_card)
+  puts "    -> payment_source: #{payment_source.name} - #{payment_source.token_id} - #{payment_source.kind}_#{payment_source.wompi_payment_source_id}"
 end
 
 puts '  Create drivers'
