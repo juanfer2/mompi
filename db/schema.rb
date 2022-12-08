@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_07_215810) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_08_045918) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_07_215810) do
     t.string "number_plate", default: "", null: false
     t.string "token", default: "", null: false
     t.string "password_hash", default: "", null: false
+    t.index ["token"], name: "index_on_drivers_token", unique: true
+  end
+
+  create_table "payment_sources", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.string "token_aceptation", null: false
+    t.string "token_id", null: false
+    t.index ["user_id"], name: "index_payment_sources_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -26,6 +35,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_07_215810) do
     t.string "email", default: "", null: false
     t.string "token", default: "", null: false
     t.string "password_hash", default: "", null: false
+    t.index ["token"], name: "index_on_users_token", unique: true
   end
 
+  add_foreign_key "payment_sources", "users"
 end

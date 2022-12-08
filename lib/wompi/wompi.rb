@@ -11,5 +11,11 @@ class Wompi
     def tokenization_product(kind_product, product)
       WompiTokenization.create_token(kind_product, product)
     end
+
+    def presigned_acceptance
+      response = WompiClient.get_token_acceptations
+
+      response['data']['presigned_acceptance']
+    end
   end
 end

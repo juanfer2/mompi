@@ -1,7 +1,8 @@
 class WompiTokenization
   class << self
     def create_token(kind_product, product)
-      WompiClient.fetch('post', url(kind_product), class_product(kind_product, product).to_data_json)
+      WompiClient.fetch('post', url(kind_product),
+        class_product(kind_product, product).to_data_json)
     end
 
     def find_product_by_token(token)

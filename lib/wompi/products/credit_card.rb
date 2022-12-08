@@ -36,8 +36,9 @@ module Products
     def to_data_json
       {
         number: @number,
-        expiration_date: @expiration_date,
-        cvc: @cvc,
+        exp_month: exp_month,
+        exp_year: exp_year.split(//).last(2).join,
+        cvc: @cvc.to_s,
         card_holder: @card_holder,
       }
     end

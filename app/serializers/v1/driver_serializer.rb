@@ -1,5 +1,5 @@
 module V1
-  class UserSerializer
+  class DriverSerializer
     def initialize(user)
       @user = user
     end
@@ -8,7 +8,7 @@ module V1
       {
         id: @user.id,
         name: @user.name,
-        email: @user.email,
+        number_plate: @user.number_plate,
         token: @user.token
       }.to_json
     end

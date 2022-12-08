@@ -1,12 +1,12 @@
-require_relative '../../models/user'
-require_relative '../../services/v1/users/create_service'
-require_relative '../../serializers/v1/user_serializer'
+require_relative '../../models/driver'
+require_relative '../../services/v1/drivers/create_service'
+require_relative '../../serializers/v1/driver_serializer'
 
-namespace '/api/v1/users' do
+namespace '/api/v1/drivers' do
   post '' do
-    user = V1::Users::CreateService.call(@body['name'], @body['email'], @body['password'])
+    user = V1::Drivers::CreateService.call(@body['name'], @body['email'], @body['password'])
 
-    V1::UserSerializer.new(user).as_json
+    V1::Driverserializer.new(user).as_json
   rescue Api::UserError => e
     status 400
     { error: e.message }.to_json
@@ -19,7 +19,7 @@ namespace '/api/v1/users' do
     user_protected!
     user = User.find(params[:id])
 
-    V1::UserSerializer.new(user).as_json
+    V1::Driverserializer.new(user).as_json
   rescue ActiveRecord::RecordNotFound => e
     status 404
     { error: e.message }.to_json
