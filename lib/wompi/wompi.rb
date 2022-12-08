@@ -3,6 +3,7 @@ require_relative 'wompi_setting'
 require_relative 'wompi_configuration'
 require_relative 'wompi_client'
 require_relative 'wompi_tokenization'
+require_relative 'wompi_payment_source'
 require_relative 'products/nequi'
 require_relative 'products/credit_card'
 
@@ -16,6 +17,10 @@ class Wompi
       response = WompiClient.get_token_acceptations
 
       response['data']['presigned_acceptance']
+    end
+
+    def create_payment_source(type, token, customer_email, acceptance_token)
+      WompiPaymentSource.new(type, token, customer_email, acceptance_token).create_payment_source
     end
   end
 end

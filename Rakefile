@@ -3,6 +3,8 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/activerecord/rake'
 require_relative 'app/services/application_service'
+require 'pry'
+
 
 desc 'Run server'
 task :server do

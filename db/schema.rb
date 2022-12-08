@@ -27,6 +27,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_08_045918) do
     t.string "name", null: false
     t.string "token_aceptation", null: false
     t.string "token_id", null: false
+    t.string "wompi_payment_source_id", null: false
+    t.integer "kind", null: false
     t.index ["user_id"], name: "index_payment_sources_on_user_id"
   end
 
