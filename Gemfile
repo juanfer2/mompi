@@ -4,11 +4,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.0'
 
 gem 'sinatra'
+gem 'sinatra-contrib'
+gem 'sinatra-active-model-serializers'
 
 # loads environment variables
 gem 'dotenv'
-
-
 
 # db
 gem 'pg', '1.2.3'
@@ -18,14 +18,17 @@ gem 'rake'
 
 gem 'json', '~> 2.6', '>= 2.6.3'
 
+# authentication
+gem 'jwt', '2.3.0'
+
 # background request
 gem 'httparty', '0.18.1'
 
 group :test, :development do
   gem 'pry'
-  gem 'pry-rails', '0.3.9'
-  gem 'factory_bot_rails', '6.1.0'
   gem 'faker', '2.15.1'
+  gem 'rspec'
+  gem 'rack-test'
   # docker needed ssh gems
   gem 'ed25519', '1.2.4'
   gem 'pre-commit', '0.39.0', require: false

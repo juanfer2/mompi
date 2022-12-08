@@ -1,26 +1,24 @@
 module Products
   class CreditCard
-    attr_accessor :name, :number, :expiration_date, :security_code, :owner_card, :document_id
+    attr_accessor :name, :number, :expiration_date, :cvc, :card_holder
 
-    def initialize(name:, number:, expiration_date:, security_code:, owner_card:, document_id:)
-      @name = name
+    def initialize(number:, expiration_date:, cvc:, card_holder:)
       @number = number
       @expiration_date = expiration_date
-      @security_code = security_code
-      @owner_card = owner_card
-      @document_id = document_id
+      @cvc = cvc
+      @card_holder = card_holder
     end
 
-    def expiration_date_year
+    def exp_year
       @expiration_date_year ||= expiration_date_array[0]
     end
 
-    def expiration_date_month
+    def exp_month
       @expiration_date_month ||= expiration_date_array[1]
     end
 
-    def security_code_valid?
-      security_code.to_s =~ /^\d{1,4}$/
+    def cvc_valid?
+      cvc.to_s =~ /^\d{1,4}$/
     end
 
     def number_is_valid?
@@ -37,12 +35,10 @@ module Products
 
     def to_data_json
       {
-        name: @name,
         number: @number,
         expiration_date: @expiration_date,
-        security_code: @security_code,
-        owner_card: @owner_card,
-        document_id: @document_id
+        cvc: @cvc,
+        card_holder: @card_holder,
       }
     end
 

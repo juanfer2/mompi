@@ -10,24 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_07_000636) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_07_215810) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "articles", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
-    t.boolean "published", default: false
-    t.datetime "published_on"
-    t.integer "likes", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "drivers", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "number_plate", default: "", null: false
+    t.string "token", default: "", null: false
+    t.string "password_hash", default: "", null: false
   end
 
-  create_table "people", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "users", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "email", default: "", null: false
+    t.string "token", default: "", null: false
+    t.string "password_hash", default: "", null: false
   end
 
 end

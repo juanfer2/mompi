@@ -1,5 +1,13 @@
-before { content_type :json }
+before do
+  @body = body_request
+  content_type :json
+end
+
+def body_request
+  JSON.parse(request.body.read)
+rescue
+  { }
+end
 
 current_dir = Dir.pwd
-puts current_dir
-Dir["#{current_dir}/app/controllers/*.rb"].each { |file| require file }
+Dir["#{current_dir}/app/controllers/**/*.rb"].each { |file| require file }

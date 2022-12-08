@@ -6,11 +6,10 @@ require_relative 'wompi_tokenization'
 require_relative 'products/nequi'
 require_relative 'products/credit_card'
 
-
 class Wompi
   class << self
     def tokenization_product(kind_product, product)
-      WompiTokenization.new(kind_product, product).create_token
+      WompiTokenization.create_token(kind_product, product)
     end
   end
 end
