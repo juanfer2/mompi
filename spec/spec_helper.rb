@@ -1,15 +1,15 @@
 ENV['APP_ENV'] = ENV['RACK_ENV'] ||= 'test'
 
 require 'sinatra'
-require "sinatra/base"
+require 'sinatra/base'
 require 'sinatra/activerecord'
 require 'faker'
 require 'factory_bot'
 require 'rake'
 require 'pry'
 require 'rack/test'
-Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
-Dir["./app/models/**/*.rb"].sort.each { |f| require f }
+Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
+Dir['./app/models/**/*.rb'].sort.each { |f| require f }
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

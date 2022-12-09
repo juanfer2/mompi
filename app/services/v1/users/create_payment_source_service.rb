@@ -24,7 +24,7 @@ module V1
       end
 
       def tokenization_product
-        Wompi.tokenization_product(@kind.to_s , @product)['data']
+        Wompi.tokenization_product(@kind.to_s, @product)['data']
       end
     end
   end

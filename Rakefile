@@ -6,7 +6,6 @@ require 'sinatra/activerecord/rake'
 require_relative 'app/services/application_service'
 require 'pry'
 
-
 desc 'Start set up project'
 task :set_up do
   sh 'rake db:create'
@@ -28,3 +27,9 @@ end
 task :generate_key do
   puts SecureRandom.hex(64)
 end
+
+desc 'linter for project'
+task :lint do
+  sh 'rubocop --auto-correct'
+end
+

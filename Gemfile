@@ -29,7 +29,7 @@ gem 'jwt', '2.3.0'
 gem 'httparty', '0.18.1'
 
 # puma
-gem "puma"
+gem 'puma'
 
 group :test, :development do
   gem 'pry'

@@ -1,7 +1,7 @@
 require 'pry'
 require 'sinatra'
-require "sinatra/base"
-require "sinatra/namespace"
+require 'sinatra/base'
+require 'sinatra/namespace'
 require 'sinatra/activerecord'
 require_relative '../lib/wompi/wompi'
 require_relative '../config/wompi_setting'

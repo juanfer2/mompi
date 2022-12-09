@@ -3,7 +3,6 @@ require_relative '../../services/v1/users/create_service'
 require_relative '../../serializers/v1/user_serializer'
 require_relative '../applicatioin_controller'
 
-
 # namespace '/api/v1/users' do
 #   post '' do
 #     user = V1::Users::CreateService.call(@body['name'], @body['email'], @body['password'])
