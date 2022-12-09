@@ -24,11 +24,12 @@ task :test do
   sh 'rspec'
 end
 
+desc 'Generate secure key'
 task :generate_key do
   puts SecureRandom.hex(64)
 end
 
-desc 'linter for project'
+desc 'Linter for project'
 task :lint do
   sh 'rubocop --auto-correct'
 end
