@@ -6,9 +6,13 @@ ruby '3.0.0'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-active-model-serializers'
+gem 'bcrypt'
 
 # loads environment variables
 gem 'dotenv'
+
+# sysrandom
+gem 'sysrandom'
 
 # db
 gem 'pg', '1.2.3'
@@ -23,6 +27,9 @@ gem 'jwt', '2.3.0'
 
 # background request
 gem 'httparty', '0.18.1'
+
+# puma
+gem "puma"
 
 group :test, :development do
   gem 'pry'
@@ -45,5 +52,6 @@ group :test do
   gem 'simplecov', '0.16.1', require: false
   gem 'fuubar', '2.5.1'
   gem 'rspec_junit_formatter', '0.4.1'
+  gem 'factory_bot'
 end
 

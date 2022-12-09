@@ -1,9 +1,15 @@
 ENV['APP_ENV'] = ENV['RACK_ENV'] ||= 'test'
 
 require 'sinatra'
+require "sinatra/base"
+require 'sinatra/activerecord'
 require 'faker'
 require 'factory_bot'
 require 'rake'
+require 'pry'
+require 'rack/test'
+Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
+Dir["./app/models/**/*.rb"].sort.each { |f| require f }
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
@@ -86,4 +92,8 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  config.include Rack::Test::Methods
+  config.include RequestSpecHelper, type: :request
+  config.include FactoryBot::Syntax::Methods
+  FactoryBot.find_definitions
 end

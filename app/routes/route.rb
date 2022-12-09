@@ -11,3 +11,7 @@ end
 
 current_dir = Dir.pwd
 Dir["#{current_dir}/app/controllers/**/*.rb"].each { |file| require file }
+
+get '' do
+  halt 200, { message: 'hi' }.to_json
+end

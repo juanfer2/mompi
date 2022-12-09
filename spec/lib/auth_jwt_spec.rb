@@ -3,7 +3,7 @@ require_relative '../../app/utils/auth_jwt'
 
 RSpec.describe AuthJwt do
   subject { described_class }
-  let(:secret_key) { 'Rails.application.credentials.secret_key_base' }
+  let(:secret_key) { ENV['SECRET_KEY'] }
   let(:hmac) { 'HS256' }
   let(:payload) { { data: 'data' } }
   let(:token) { 'tokenRandom' }

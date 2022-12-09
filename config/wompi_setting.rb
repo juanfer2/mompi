@@ -1,5 +1,5 @@
 WompiSetting.configure do |config|
-  config.url = 'https://sandbox.wompi.co/v1'
-  config.public_key = 'pub_test_3AFQQy5RMJadhcszPEXWwhFEPkl2s2kT'
-  config.private_key = 'prv_test_jvoCjlHekCa7T7SOO29Xw9mQVkvX5nqM'
+  config.url = ENV["WOMPI_URL"]
+  config.public_key = ENV["WOMPI_PUB_KEY"]
+  config.private_key = ENV["WOMPI_PRV_KEY"]
 end
