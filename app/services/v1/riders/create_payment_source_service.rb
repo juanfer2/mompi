@@ -1,7 +1,5 @@
-require_relative '../../../models/payment_source'
-
 module V1
-  module Users
+  module Riders
     class CreatePaymentSourceService < ApplicationService
       def initialize(current_user, acceptance_token, kind, product)
         @current_user = current_user
@@ -11,9 +9,9 @@ module V1
       end
 
       def call
-        PaymentSource.create(user_id: @current_user.id, name: tokenization_product['name'],
+        PaymentSource.create(rider_id: @current_user.id, name: tokenization_product['name'],
           token_aceptation: @acceptance_token, token_id: tokenization_product['id'], kind: @kind,
-          wompi_payment_source_id: wompi_payment_source['id'])
+          resource_id: wompi_payment_source['id'])
       end
 
       private

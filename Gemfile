@@ -4,9 +4,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.0'
 
 gem 'sinatra'
-gem 'sinatra-contrib'
 gem 'sinatra-active-model-serializers'
 gem 'bcrypt'
+
+github 'sinatra/sinatra' do
+  gem 'sinatra-contrib'
+end
 
 # loads environment variables
 gem 'dotenv'

@@ -1,5 +1,5 @@
 class PaymentSource < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :rider
 
   enum kind: [:card, :nequi]
 

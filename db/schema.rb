@@ -23,22 +23,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_08_045918) do
   end
 
   create_table "payment_sources", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "rider_id", null: false
     t.string "name", null: false
     t.string "token_aceptation", null: false
     t.string "token_id", null: false
-    t.string "wompi_payment_source_id", null: false
+    t.string "resource_id", null: false
     t.integer "kind", null: false
-    t.index ["user_id"], name: "index_payment_sources_on_user_id"
+    t.index ["rider_id"], name: "index_payment_sources_on_rider_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "riders", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "token", default: "", null: false
     t.string "password_hash", default: "", null: false
-    t.index ["token"], name: "index_on_users_token", unique: true
+    t.index ["token"], name: "index_on_riders_token", unique: true
   end
 
-  add_foreign_key "payment_sources", "users"
+  add_foreign_key "payment_sources", "riders"
 end

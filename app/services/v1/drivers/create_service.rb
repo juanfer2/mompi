@@ -1,5 +1,3 @@
-require_relative '../../../models/driver'
-
 module V1
   module Drivers
     class CreateService < ApplicationService

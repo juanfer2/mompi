@@ -1,7 +1,7 @@
 require 'bcrypt'
 require_relative '../utils/auth_jwt'
 
-class User < ActiveRecord::Base
+class Rider < ActiveRecord::Base
   include BCrypt
 
   has_many :payment_sources, dependent: :destroy
