@@ -49,11 +49,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
     t.bigint "rider_id", null: false
     t.bigint "driver_id"
     t.enum "ride_status", default: "pending", null: false, enum_type: "ride_status"
-    t.float "start_latitude", null: false
-    t.float "start_longitude", null: false
-    t.float "end_latitude", null: false
-    t.float "end_longitude", null: false
-    t.decimal "base_feed", null: false
+    t.float "start_location_latitude", null: false
+    t.float "start_location_longitude", null: false
+    t.float "end_location_latitude"
+    t.float "end_location_longitude"
+    t.decimal "base_feed", precision: 12, scale: 2, null: false
     t.decimal "total", null: false
     t.index ["driver_id"], name: "index_rides_on_driver_id"
     t.index ["rider_id"], name: "index_rides_on_rider_id"

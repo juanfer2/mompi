@@ -9,6 +9,8 @@ class CreatePaymentSources < ActiveRecord::Migration[7.0]
       t.string :token_id,                 null: false
       t.string :resource_id,              null: false
       t.enum :kind,                       enum_type: :payment_sources_kind, null: false
+
+      t.timestamps
     end
   end
 

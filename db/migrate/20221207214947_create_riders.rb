@@ -5,6 +5,8 @@ class CreateRiders < ActiveRecord::Migration[7.0]
       t.string :email,             null: false, default: ""
       t.string :token,             null: false, default: ""
       t.string :password_hash,     null: false, default: ""
+
+      t.timestamps
     end
 
     add_index :riders,  :token, name: :index_on_riders_token, unique: true
