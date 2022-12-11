@@ -1,4 +1,4 @@
-class CreateUsers < ActiveRecord::Migration[7.0]
+class CreateRiders < ActiveRecord::Migration[7.0]
   def up
     create_table :riders do |t|
       t.string :name,              null: false, default: ""

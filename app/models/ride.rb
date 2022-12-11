@@ -1,7 +1,7 @@
-class PaymentSource < ActiveRecord::Base
+class Ride < ActiveRecord::Base
   belongs_to :rider
+  belongs_to :driver, optional: true
 
-  enum kind: { card: 'card', nequi: 'nequi' }
 
   validates :name, :token_aceptation, :token_id, presence: true
 end
