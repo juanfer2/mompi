@@ -1,15 +1,14 @@
 class ApplicationController < Sinatra::Base
   register Sinatra::Namespace
 
-  before do
-    @body = body_request
-    content_type :json
-  end
-  
-  def body_request
-    JSON.parse(request.body.read)
-  rescue
-    { }
+  private
+
+  def params_body
+    @params_body ||= begin
+      JSON.parse(request.body.read)
+    rescue
+      { }
+    end
   end
 
   def rider_protected!

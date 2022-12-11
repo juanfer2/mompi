@@ -1,7 +1,7 @@
 class AuthController < ApplicationController
   namespace '/api/v1/auth' do
-    post '/rider/login' do  
-      rider = Auth::LoginRiderService.call(@body['email'], @body['password'])
+    post '/rider/login' do
+      rider = Auth::LoginRiderService.call(body_request['email'], body_request['password'])
 
       V1::RiderSerializer.new(rider).as_json
     rescue ActiveRecord::RecordNotFound => e

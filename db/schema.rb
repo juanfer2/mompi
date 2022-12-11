@@ -54,16 +54,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
   create_table "rides", force: :cascade do |t|
     t.bigint "rider_id", null: false
     t.bigint "driver_id"
-    t.enum "ride_status", default: "pending", null: false, enum_type: "ride_status"
-    t.float "start_location_latitude", null: false
-    t.float "start_location_longitude", null: false
-    t.float "end_location_latitude"
-    t.float "end_location_longitude"
+    t.enum "status", default: "pending", null: false, enum_type: "ride_status"
+    t.decimal "start_location_latitude", precision: 17, scale: 14, null: false
+    t.decimal "start_location_longitude", precision: 17, scale: 14, null: false
+    t.decimal "end_location_latitude", precision: 17, scale: 14
+    t.decimal "end_location_longitude", precision: 17, scale: 14
     t.datetime "start_at"
     t.datetime "end_at"
     t.decimal "kilometres", precision: 12, scale: 2
-    t.decimal "base_feed", precision: 12, scale: 2, null: false
-    t.decimal "total", precision: 12, scale: 2, null: false
+    t.decimal "base_fee", precision: 12, scale: 2, null: false
+    t.decimal "total", precision: 12, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_rides_on_driver_id"

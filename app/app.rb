@@ -15,5 +15,6 @@ Dir["#{current_dir}/app/serializers/**/*.rb"].each { |file| require file }
 Dir["#{current_dir}/app/controllers/**/*.rb"].each { |file| require file }
 
 class MompiApp < ApplicationController
+  use RidersController
   use AuthController
 end
