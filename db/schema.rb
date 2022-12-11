@@ -24,6 +24,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
     t.string "number_plate", default: "", null: false
     t.string "token", default: "", null: false
     t.string "password_hash", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["token"], name: "index_on_drivers_token", unique: true
   end
 
@@ -34,6 +36,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
     t.string "token_id", null: false
     t.string "resource_id", null: false
     t.enum "kind", null: false, enum_type: "payment_sources_kind"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["rider_id"], name: "index_payment_sources_on_rider_id"
   end
 
@@ -42,6 +46,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
     t.string "email", default: "", null: false
     t.string "token", default: "", null: false
     t.string "password_hash", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["token"], name: "index_on_riders_token", unique: true
   end
 
@@ -53,8 +59,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
     t.float "start_location_longitude", null: false
     t.float "end_location_latitude"
     t.float "end_location_longitude"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.decimal "kilometres", precision: 12, scale: 2
     t.decimal "base_feed", precision: 12, scale: 2, null: false
-    t.decimal "total", null: false
+    t.decimal "total", precision: 12, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_rides_on_driver_id"
     t.index ["rider_id"], name: "index_rides_on_rider_id"
   end

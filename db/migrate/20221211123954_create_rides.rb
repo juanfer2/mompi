@@ -12,10 +12,10 @@ class CreateRides < ActiveRecord::Migration[7.0]
       t.float :end_location_latitude,       null: true
       t.float :end_location_longitude,      null: true
 
-      t.datetime :start_at                  null: true
-      t.datetime :end_at                    null: true
+      t.datetime :start_at,                 null: true
+      t.datetime :end_at,                   null: true
 
-      t.numeric :kilometers                 null: true, precision: 12, scale: 2
+      t.numeric :kilometres,                null: true, precision: 12, scale: 2
       t.numeric :base_feed,                 null: false, precision: 12, scale: 2
       t.numeric :total,                     null: false, precision: 12, scale: 2
 
