@@ -5,7 +5,7 @@ class CreateRides < ActiveRecord::Migration[7.0]
     create_table :rides do |t|
       t.references :rider,                    index: true, foreign_key: true, null: false
       t.references :driver,                   index: true, foreign_key: true, null: true
-      t.enum :status,                    enum_type: :ride_status, default: :pending, null: false
+      t.enum :status,                         enum_type: :ride_status, default: :pending, null: false
   
       t.decimal :start_location_latitude,     null: false, precision: 17, scale: 14
       t.decimal :start_location_longitude,    null: false, precision: 17, scale: 14
@@ -15,8 +15,11 @@ class CreateRides < ActiveRecord::Migration[7.0]
       t.datetime :start_at,                   null: true
       t.datetime :end_at,                     null: true
 
-      t.numeric :kilometres,                  null: true, precision: 12, scale: 2
-      t.numeric :base_fee,                    null: false, precision: 12, scale: 2
+      t.numeric :kilometers,                  null: true, precision: 12, scale: 2
+
+      t.numeric :total_kilometer_fee,         null: true, precision: 12, scale: 2
+      t.numeric :total_time_fee,              null: true, precision: 12, scale: 2
+      t.numeric :base_fee,                    null: true, precision: 12, scale: 2
       t.numeric :total,                       null: true, precision: 12, scale: 2
 
       t.timestamps

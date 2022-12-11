@@ -19,6 +19,8 @@ class RidersController < ApplicationController
       V1::RideSerializer.new(@ride).as_json
     rescue ActiveRecord::RecordNotFound => e
       halt 404, { error: e.message }.to_json
+    rescue Api::ParamsError => e
+      halt 403, { error: e.message }.to_json
     rescue => e
       halt 500, { error: e.message }.to_json
     end

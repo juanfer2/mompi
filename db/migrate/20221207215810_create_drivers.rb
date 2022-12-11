@@ -1,10 +1,14 @@
 class CreateDrivers < ActiveRecord::Migration[7.0]
   def up
+    create_enum :driver_status, [:available, :occupied]
+
     create_table :drivers do |t|
       t.string :name,              null: false, default: ""
       t.string :number_plate,      null: false, default: ""
       t.string :token,             null: false, default: ""
       t.string :password_hash,     null: false, default: ""
+
+      t.enum :status,              enum_type: :driver_status, default: :available, null: false
 
       t.timestamps
     end

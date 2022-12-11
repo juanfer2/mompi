@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "driver_status", ["available", "occupied"]
   create_enum "payment_sources_kind", ["card", "nequi"]
   create_enum "ride_status", ["pending", "active", "finished", "canceled"]
 
@@ -24,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
     t.string "number_plate", default: "", null: false
     t.string "token", default: "", null: false
     t.string "password_hash", default: "", null: false
+    t.enum "status", default: "available", null: false, enum_type: "driver_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["token"], name: "index_on_drivers_token", unique: true
@@ -61,8 +63,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
     t.decimal "end_location_longitude", precision: 17, scale: 14
     t.datetime "start_at"
     t.datetime "end_at"
-    t.decimal "kilometres", precision: 12, scale: 2
-    t.decimal "base_fee", precision: 12, scale: 2, null: false
+    t.decimal "kilometers", precision: 12, scale: 2
+    t.decimal "total_kilometer_fee", precision: 12, scale: 2
+    t.decimal "total_time_fee", precision: 12, scale: 2
+    t.decimal "base_fee", precision: 12, scale: 2
     t.decimal "total", precision: 12, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

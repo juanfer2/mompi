@@ -34,6 +34,9 @@ gem 'httparty', '0.18.1'
 # puma
 gem 'puma'
 
+# geocoder
+gem 'geocoder'
+
 group :test, :development do
   gem 'pry'
   gem 'faker', '2.15.1'

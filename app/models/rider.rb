@@ -5,6 +5,7 @@ class Rider < ActiveRecord::Base
   include BCrypt
 
   has_many :payment_sources, dependent: :destroy
+  has_many :rides, dependent: :destroy
 
   validates :name, :email, presence: true
   validates_presence_of :password, message: "can't be blank"

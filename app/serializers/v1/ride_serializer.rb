@@ -8,7 +8,7 @@ module V1
       {
         id: @ride.id,
         rider: rider,
-        driver: @ride.driver,
+        driver: driver,
         status: @ride.status,
         start_location_latitude: @ride.start_location_latitude,
         start_location_longitude: @ride.start_location_longitude,
@@ -16,7 +16,9 @@ module V1
         end_location_longitude: @ride.end_location_longitude,
         start_at: @ride.start_at,
         end_at: @ride.end_at,
-        kilometres: @ride.kilometres,
+        kilometers: @ride.kilometers,
+        total_kilometer_fee: @ride.total_kilometer_fee,
+        total_time_fee: @ride.total_time_fee,
         base_fee: @ride.base_fee,
         total: @ride.total
       }.to_json
@@ -26,9 +28,9 @@ module V1
 
     def driver
       {
-        id: @ride.drive.id,
-        name: @ride.drive.name,
-        number_plate: @ride.drive.number_plate,
+        id: @ride.driver.id,
+        name: @ride.driver.name,
+        number_plate: @ride.driver.number_plate,
       }
     end
 

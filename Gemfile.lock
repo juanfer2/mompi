@@ -58,6 +58,7 @@ GEM
     fuubar (2.5.1)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
+    geocoder (1.8.1)
     gitlab (4.18.0)
       httparty (~> 0.18)
       terminal-table (>= 1.5.1)
@@ -200,6 +201,7 @@ DEPENDENCIES
   factory_bot
   faker (= 2.15.1)
   fuubar (= 2.5.1)
+  geocoder
   httparty (= 0.18.1)
   json (~> 2.6, >= 2.6.3)
   jwt (= 2.3.0)
