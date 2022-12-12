@@ -25,7 +25,7 @@ make copy-config
 Then you must be config the files are in `config/` folder:
 
 - `database.yml`: Settings for connection to postgres, in this file you must add the access for your database
-- `credentials.yml`: Settings for credentials for services, in this file you must add de wompi credentials configuration, `url`, `private_key`, and `public_key`
+- `credentials.yml`: Settings for credentials for services, in this file you must add de wompi credentials configuration, `url` (with version api `url/api/v1`), `private_key`, and `public_key`
 
 Finally you must run the next command for create database, run migrations and run seeds in the console 
 
