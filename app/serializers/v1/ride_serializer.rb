@@ -12,6 +12,7 @@ module V1
         rider: rider,
         driver: driver,
         status: @ride.status,
+        payment_status: @ride.payment_status,
         start_location_latitude: @ride.start_location_latitude,
         start_location_longitude: @ride.start_location_longitude,
         end_location_latitude: @ride.end_location_latitude,

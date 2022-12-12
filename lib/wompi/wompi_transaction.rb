@@ -13,7 +13,7 @@ class WompiTransaction
   end
 
   def exec
-    WompiClient.fetch('post', 'transactions', body, use_private_key: false)
+    WompiClient.fetch('post', 'transactions', body, use_private_key: true)
   end
 
   def body

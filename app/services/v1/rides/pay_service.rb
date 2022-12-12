@@ -11,15 +11,18 @@ module V1
       end
 
       def call
+        raise Api::RideError.new("Ride ##{ride.id} must be finished") unless ride.finished?
+        raise Api::RideError.new("Ride ##{ride.id} was paid") unless ride.success?
         response = Wompi.transaction(amount_in_cents: ride.total.to_i, currency: ride.currency,
           customer_email: @current_rider.email, installments: 1,
           reference: "#{ride.id}_#{DateTime.current.to_i}",
-          payment_source_id: payment_source.resource_id)['data']
+          payment_source_id: payment_source.resource_id)
 
-        RidePayment.create(ride_id: ride.id, status: response['status'],
+        payment_status = PAYMENT_STATUS[response['status']] || :failed
+        RidePayment.create(ride_id: ride.id, status: payment_status,
           resource_id: response['id'])
 
-        ride.payment_status = PAYMENT_STATUS[response['status']] || :failed
+        ride.payment_status = payment_status
       
         raise Api::RideError.new("#{ride.errors.full_messages.join(', ')}") unless ride.save
 
