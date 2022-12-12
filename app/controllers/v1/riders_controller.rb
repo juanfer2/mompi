@@ -27,7 +27,6 @@ class RidersController < ApplicationController
 
     post '/rides/:id/pay' do
       rider_protected!
-
       @ride = V1::Rides::PayService.call(current_rider, params['id'].to_i,
         params_body['paymentSourceId'].to_i)
 
@@ -43,7 +42,7 @@ class RidersController < ApplicationController
     post '/rider/login' do
       rider_protected!
 
-      rider = Auth::LoginRiderService.call(@body['email'], @body['password'])
+      rider = Auth::LoginRiderService.call(params_body['email'], params_body['password'])
 
       V1::RiderSerializer.new(rider).as_json
     rescue ActiveRecord::RecordNotFound => e

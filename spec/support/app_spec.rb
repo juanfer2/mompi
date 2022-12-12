@@ -1,5 +1,5 @@
 require_relative '../../app/app'
 
 def app
-  MompiApp
+  Rack::Lint.new(MompiApp)
 end
