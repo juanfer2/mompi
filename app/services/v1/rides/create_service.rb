@@ -1,6 +1,8 @@
 module V1
   module Rides
     class CreateService < ApplicationService
+      BASE_FEE = 350000
+
       def initialize(current_rider, current_location_latitude, current_location_longitude)
         @current_rider = current_rider
         @current_location_latitude = current_location_latitude
@@ -25,8 +27,8 @@ module V1
         @ride ||= begin
           Ride.new(rider_id: @current_rider.id, driver_id: driver.id,
             start_location_latitude: current_location.latitude, status: :active,
-            start_location_longitude: current_location.longitude, base_fee: 3500,
-            start_at: DateTime.current.utc)
+            start_location_longitude: current_location.longitude, base_fee: BASE_FEE,
+            currency: 'COP', start_at: DateTime.current.utc)
         end
       end
 

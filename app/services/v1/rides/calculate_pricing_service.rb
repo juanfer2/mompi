@@ -1,8 +1,8 @@
 module V1
   module Rides
     class CalculatePricingService < ApplicationService
-      MINUTE_PRICE = 200 
-      KILOMETER_PRICE = 1000 
+      MINUTE_PRICE = 20000
+      KILOMETER_PRICE = 100000 
 
       def initialize(ride)
         @ride = ride

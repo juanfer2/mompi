@@ -1,3 +1,5 @@
+require 'money'
+
 module V1
   class RideSerializer
     def initialize(ride)
@@ -16,15 +18,20 @@ module V1
         end_location_longitude: @ride.end_location_longitude,
         start_at: @ride.start_at,
         end_at: @ride.end_at,
-        kilometers: @ride.kilometers,
-        total_price_kilometer: @ride.total_price_kilometer,
-        total_price_time: @ride.total_price_time,
-        base_fee: @ride.base_fee,
-        total: @ride.total
+        kilometers: "#{@ride.kilometers} km",
+        currency: 'COP',
+        total_price_kilometer: convert_to_pesos(@ride.total_price_kilometer),
+        total_price_time: convert_to_pesos(@ride.total_price_time),
+        base_fee: convert_to_pesos(@ride.base_fee),
+        total: convert_to_pesos(@ride.total)
       }.to_json
     end
 
     private
+
+    def convert_to_pesos(price)
+      Money.from_cents(price, "COP").format({ separator: ",", delimiter: ".", symbol: "$ "}) if price
+    end
 
     def driver
       {

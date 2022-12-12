@@ -38,6 +38,8 @@ gem 'puma'
 gem 'geocoder'
 gem 'activerecord-postgres-earthdistance'
 
+gem 'money'
+
 group :test, :development do
   gem 'pry'
   gem 'faker', '2.15.1'

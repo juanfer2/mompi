@@ -4,12 +4,11 @@ require 'sinatra/base'
 require 'sinatra/contrib'
 require 'sinatra/namespace'
 require 'sinatra/activerecord'
+require 'money'
 require_relative '../lib/wompi/wompi'
 require_relative '../config/wompi_setting'
 require_relative './utils/errors'
 require_relative './utils/geo_localization'
-
-# Time.zone = "America/Bogota"
 
 current_dir = Dir.pwd
 Dir["#{current_dir}/app/models/**/*.rb"].each { |file| require file }

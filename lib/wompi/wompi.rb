@@ -22,5 +22,12 @@ class Wompi
     def create_payment_source(type, token, customer_email, acceptance_token)
       WompiPaymentSource.new(type, token, customer_email, acceptance_token).create_payment_source
     end
+
+    def transaction(amount_in_cents:, currency:, customer_email:, payment_method:, reference:,
+      payment_source_id:)
+
+      WompiTransaction.new(amount_in_cents, currency, customer_email, payment_method, reference,
+        payment_source_id).exec
+    end
   end
 end
