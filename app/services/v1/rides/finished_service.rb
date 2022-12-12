@@ -10,8 +10,7 @@ module V1
 
       def call
         V1::Rides::ValidateCurrentLocationService.call(current_location)
-        #raise Api::RideError.new("Ride ##{ride.id} was finished") if ride.finished?
-
+        raise Api::RideError.new("Ride ##{ride.id} was finished") if ride.finished?
         ride.kilometers = distance_kilometers
         ride.end_location_latitude = current_location.latitude
         ride.end_location_longitude = current_location.longitude

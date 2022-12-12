@@ -8,10 +8,10 @@ default: &default
 
 development:
   <<: *default
-  database: wompi_development
-  password: 1234
+  database: database_dev
+  password: password
 
 test:
   <<: *default
-  database: wompi_test
-  password: 1234
+  database: database_tet
+  password: password

@@ -1,15 +1,5 @@
 class RidersController < ApplicationController
   namespace '/api/v1/riders' do
-    get '/me' do
-      rider_protected!
-  
-      V1::RidersSerializer.new(current_rider).as_json
-    rescue ActiveRecord::RecordNotFound => e
-      halt 404, { error: e.message }.to_json
-    rescue => e
-      halt 500, { error: e.message }.to_json
-    end
-
     post '/rides' do
       rider_protected!
 
@@ -35,18 +25,6 @@ class RidersController < ApplicationController
       halt 404, { error: e.message }.to_json
     rescue Api::ParamsError => e
       halt 403, { error: e.message }.to_json
-    rescue => e
-      halt 500, { error: e.message }.to_json
-    end
-
-    post '/rider/login' do
-      rider_protected!
-
-      rider = Auth::LoginRiderService.call(params_body['email'], params_body['password'])
-
-      V1::RiderSerializer.new(rider).as_json
-    rescue ActiveRecord::RecordNotFound => e
-      halt 404, { error: e.message }.to_json
     rescue => e
       halt 500, { error: e.message }.to_json
     end

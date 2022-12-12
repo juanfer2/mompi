@@ -11,7 +11,7 @@ class AuthController < ApplicationController
     end
 
     post '/driver/login' do
-      driver_protected!
+      rider = Auth::LoginDriverService.call(body_request['email'], body_request['password'])
 
       V1::Driverserializer.new(current_driver).as_json
     rescue ActiveRecord::RecordNotFound => e
