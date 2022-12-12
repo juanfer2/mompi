@@ -4,7 +4,7 @@ require 'date'
 class AuthJwt
   class << self
     HS256 = 'HS256'
-    SECRET_KEY = ENV['SECRET_KEY']
+    SECRET_KEY = Credentials.secret_key
 
     def generate_token(payload)
       JWT.encode(payload, SECRET_KEY, HS256)

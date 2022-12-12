@@ -18,14 +18,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_042337) do
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "driver_status", ["available", "occupied"]
   create_enum "payment_sources_kind", ["card", "nequi"]
-  create_enum "payment_status", ["waiting", "success", "failed"]
-  create_enum "ride_status", ["pending", "active", "finished", "canceled"]
+  create_enum "payment_status", ["pending", "success", "failed"]
+  create_enum "ride_status", ["active", "finished"]
 
   create_table "drivers", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "number_plate", default: "", null: false
     t.string "token", default: "", null: false
     t.string "password_hash", default: "", null: false
+    t.boolean "available", default: true, null: false
     t.enum "status", default: "available", null: false, enum_type: "driver_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

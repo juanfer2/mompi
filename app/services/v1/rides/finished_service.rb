@@ -10,7 +10,7 @@ module V1
 
       def call
         V1::Rides::ValidateCurrentLocationService.call(current_location)
-        raise Api::RideError.new("Ride ##{ride.id} was finished") if ride.finished?
+        #raise Api::RideError.new("Ride ##{ride.id} was finished") if ride.finished?
 
         ride.kilometers = distance_kilometers
         ride.end_location_latitude = current_location.latitude
@@ -21,12 +21,20 @@ module V1
         ride.total = pricing[:total]
         ride.status = :finished
 
+        driver.available = true
+        driver.save
+
+
         raise Api::RideError.new("#{ride.errors.full_messages.join(', ')}") unless ride.save
 
         ride
       end
 
       private
+
+      def driver
+        @driver ||= ride.driver
+      end
 
       def start_location
         @start_location ||= begin

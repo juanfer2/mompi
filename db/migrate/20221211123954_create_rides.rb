@@ -1,7 +1,7 @@
 class CreateRides < ActiveRecord::Migration[7.0]
   def up
-    create_enum :ride_status, [:pending, :active, :finished, :canceled]
-    create_enum :payment_status, [:waiting, :success, :failed]
+    create_enum :ride_status, [:active, :finished]
+    create_enum :payment_status, [:pending, :success, :failed]
 
     create_table :rides do |t|
       t.references :rider,                    index: true, foreign_key: true, null: false

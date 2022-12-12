@@ -11,8 +11,10 @@ module V1
 
       def call
         V1::Rides::ValidateCurrentLocationService.call(current_location)
-
-        raise Api::RideError.new("#{ride.errors.full_messages.join(', ')}") unless ride.save  
+        raise Api::RideError.new("Drivers are not available") unless driver
+        raise Api::RideError.new("#{ride.errors.full_messages.join(', ')}") unless ride.save
+        driver.available = false
+        driver.save
 
         ride
       end
@@ -33,7 +35,7 @@ module V1
       end
 
       def driver
-        @driver ||= Driver.first
+        @driver ||= Driver.available.first
       end
     end
   end
