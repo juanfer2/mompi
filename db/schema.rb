@@ -65,10 +65,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
     t.datetime "end_at"
     t.decimal "kilometers", precision: 12, scale: 2
     t.string "currency"
-    t.decimal "total_price_kilometer", precision: 12, scale: 2
-    t.decimal "total_price_time", precision: 12, scale: 2
-    t.decimal "base_fee", precision: 12, scale: 2
-    t.decimal "total", precision: 12, scale: 2
+    t.decimal "total_price_kilometer", precision: 12
+    t.decimal "total_price_time", precision: 12
+    t.decimal "base_fee", precision: 12
+    t.decimal "total", precision: 12
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_rides_on_driver_id"

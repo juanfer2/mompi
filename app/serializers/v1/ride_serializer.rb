@@ -30,7 +30,7 @@ module V1
     private
 
     def convert_to_pesos(price)
-      Money.from_cents(price, "COP").format({ separator: ",", delimiter: ".", symbol: "$ "}) if price
+      Money.from_cents(price.to_i, 'COP').format({ separator: ',', delimiter: '.', symbol: '$ '}) if price
     end
 
     def driver

@@ -4,9 +4,9 @@ require 'sinatra/base'
 require 'sinatra/contrib'
 require 'sinatra/namespace'
 require 'sinatra/activerecord'
-require 'money'
-require_relative '../lib/wompi/wompi'
-require_relative '../config/wompi_setting'
+require './config/credentials'
+require './lib/wompi/wompi'
+require './config/wompi_setting'
 require_relative './utils/errors'
 require_relative './utils/geo_localization'
 
@@ -15,6 +15,7 @@ Dir["#{current_dir}/app/models/**/*.rb"].each { |file| require file }
 Dir["#{current_dir}/app/services/**/*.rb"].each { |file| require file }
 Dir["#{current_dir}/app/serializers/**/*.rb"].each { |file| require file }
 Dir["#{current_dir}/app/controllers/**/*.rb"].each { |file| require file }
+
 
 class MompiApp < ApplicationController
   use AuthController

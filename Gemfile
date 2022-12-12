@@ -40,6 +40,8 @@ gem 'activerecord-postgres-earthdistance'
 
 gem 'money'
 
+gem 'oj'
+
 group :test, :development do
   gem 'pry'
   gem 'faker', '2.15.1'

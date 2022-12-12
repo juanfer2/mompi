@@ -9,10 +9,10 @@ module V1
       end
 
       def call
-        total_price_time =  minutes_elapsed * MINUTE_PRICE
+        total_price_time = minutes_elapsed * MINUTE_PRICE
         total_price_kilometer = @ride.kilometers * KILOMETER_PRICE
 
-        { total:@ride.base_fee + total_price_time + total_price_kilometer,
+        { total: @ride.base_fee + total_price_time + total_price_kilometer,
           total_price_time: total_price_time, total_price_kilometer: total_price_kilometer }
       end
 

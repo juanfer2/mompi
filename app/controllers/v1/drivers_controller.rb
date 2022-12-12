@@ -17,7 +17,6 @@ class DriversController < ApplicationController
   end
 end
 
-
 # namespace '/api/v1/drivers' do
 #   post '' do
 #     user = V1::Drivers::CreateService.call(@body['name'], @body['email'], @body['password'])

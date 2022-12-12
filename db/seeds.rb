@@ -1,4 +1,5 @@
 require 'faker'
+require_relative '../config/credentials'
 require_relative '../lib/wompi/wompi'
 require_relative '../config/wompi_setting'
 

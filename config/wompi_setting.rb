@@ -1,5 +1,5 @@
 WompiSetting.configure do |config|
-  config.url = ENV['WOMPI_URL']
-  config.public_key = ENV['WOMPI_PUB_KEY']
-  config.private_key = ENV['WOMPI_PRV_KEY']
+  config.url = Credentials.wompi['url']
+  config.public_key = Credentials.wompi['pub_key']
+  config.private_key = Credentials.wompi['prv_key']
 end

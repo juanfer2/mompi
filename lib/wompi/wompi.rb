@@ -3,6 +3,7 @@ require_relative 'wompi_setting'
 require_relative 'wompi_configuration'
 require_relative 'wompi_client'
 require_relative 'wompi_tokenization'
+require_relative 'wompi_transaction'
 require_relative 'wompi_payment_source'
 require_relative 'products/nequi'
 require_relative 'products/credit_card'
@@ -23,10 +24,10 @@ class Wompi
       WompiPaymentSource.new(type, token, customer_email, acceptance_token).create_payment_source
     end
 
-    def transaction(amount_in_cents:, currency:, customer_email:, payment_method:, reference:,
+    def transaction(amount_in_cents:, currency:, customer_email:, installments:, reference:,
       payment_source_id:)
 
-      WompiTransaction.new(amount_in_cents, currency, customer_email, payment_method, reference,
+      WompiTransaction.new(amount_in_cents, currency, customer_email, installments, reference,
         payment_source_id).exec
     end
   end
