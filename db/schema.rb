@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_12_042337) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "driver_status", ["available", "occupied"]
   create_enum "payment_sources_kind", ["card", "nequi"]
+  create_enum "payment_status", ["waiting", "success", "failed"]
   create_enum "ride_status", ["pending", "active", "finished", "canceled"]
 
   create_table "drivers", force: :cascade do |t|
@@ -43,6 +44,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
     t.index ["rider_id"], name: "index_payment_sources_on_rider_id"
   end
 
+  create_table "ride_payments", force: :cascade do |t|
+    t.bigint "ride_id", null: false
+    t.enum "status", null: false, enum_type: "payment_status"
+    t.string "resource_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ride_id"], name: "index_ride_payments_on_ride_id"
+  end
+
   create_table "riders", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
@@ -56,7 +66,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
   create_table "rides", force: :cascade do |t|
     t.bigint "rider_id", null: false
     t.bigint "driver_id"
-    t.enum "status", default: "pending", null: false, enum_type: "ride_status"
+    t.enum "status", null: false, enum_type: "ride_status"
+    t.enum "payment_status", enum_type: "payment_status"
     t.decimal "start_location_latitude", precision: 17, scale: 14, null: false
     t.decimal "start_location_longitude", precision: 17, scale: 14, null: false
     t.decimal "end_location_latitude", precision: 17, scale: 14
@@ -65,10 +76,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
     t.datetime "end_at"
     t.decimal "kilometers", precision: 12, scale: 2
     t.string "currency"
-    t.decimal "total_price_kilometer", precision: 12
-    t.decimal "total_price_time", precision: 12
-    t.decimal "base_fee", precision: 12
-    t.decimal "total", precision: 12
+    t.decimal "total_price_kilometer", precision: 12, scale: 2
+    t.decimal "total_price_time", precision: 12, scale: 2
+    t.decimal "base_fee", precision: 12, scale: 2
+    t.decimal "total", precision: 12, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_rides_on_driver_id"
@@ -76,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_11_123954) do
   end
 
   add_foreign_key "payment_sources", "riders"
+  add_foreign_key "ride_payments", "rides"
   add_foreign_key "rides", "drivers"
   add_foreign_key "rides", "riders"
 end

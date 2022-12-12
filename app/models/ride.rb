@@ -5,7 +5,7 @@ class Ride < ActiveRecord::Base
   has_many :rides, dependent: :destroy
 
   enum status: { pending: 'pending', active: 'active', finished: 'finished', canceled: 'canceled'}
-  enum payment_status: { pending: 'pending', success: 'success', failed: 'failed' }
+  enum payment_status: { waiting: 'waiting', success: 'success', failed: 'failed' }
 
   validates :start_location_latitude, :start_location_longitude, :base_fee, :status, presence: true
 end
