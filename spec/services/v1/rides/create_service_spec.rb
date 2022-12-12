@@ -35,8 +35,18 @@ RSpec.describe V1::Rides::CreateService, type: :service do
       end
     end
 
+    context 'when drivers are not available' do
+      before { allow(subject).to receive(:driver).and_return(nil) }
+
+      it 'return error' do
+        expect { subject.call }.to raise_error(Api::RideError)
+      end
+    end
+
     context 'when ride is create' do
       let(:ride) { subject.call }
+
+      before { allow(subject).to receive(:driver).and_return(driver) }
 
       it 'validates new ride' do
         expect(ride.id.present?).to be_truthy
@@ -46,8 +56,8 @@ RSpec.describe V1::Rides::CreateService, type: :service do
         expect(ride.start_at.present?).to be_truthy
         expect(ride.base_fee).to eq(350000)
         expect(ride.currency).to eq('COP')
-        expect(ride.start_location_latitude).to eq(current_location_latitude)
-        expect(ride.start_location_longitude).to eq(current_location_longitude)
+        expect(ride.start_location_latitude).to eq(current_location_latitude.to_f)
+        expect(ride.start_location_longitude).to eq(current_location_longitude.to_f)
       end
     end
   end

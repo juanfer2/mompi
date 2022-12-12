@@ -9,6 +9,7 @@ require 'factory_bot'
 require 'rake'
 require 'pry'
 require 'rack/test'
+require './config/credentials'
 
 load 'Rakefile'
 
