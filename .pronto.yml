@@ -6,7 +6,7 @@ eslint:
   exclude:
     - 'app/assets/**/*'
 github:
-  slug: AyendaRooms/ayenda
+  slug: juanfer2/mompi
   access_token: ${PRONTO_GITHUB_ACCESS_TOKEN}
   api_endpoint: https://api.github.com/
   web_endpoint: https://github.com/
