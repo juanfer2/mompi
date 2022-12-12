@@ -17,8 +17,8 @@ class CreateRides < ActiveRecord::Migration[7.0]
 
       t.numeric :kilometers,                  null: true, precision: 12, scale: 2
 
-      t.numeric :total_kilometer_fee,         null: true, precision: 12, scale: 2
-      t.numeric :total_time_fee,              null: true, precision: 12, scale: 2
+      t.numeric :total_price_kilometer,       null: true, precision: 12, scale: 2
+      t.numeric :total_price_time,            null: true, precision: 12, scale: 2
       t.numeric :base_fee,                    null: true, precision: 12, scale: 2
       t.numeric :total,                       null: true, precision: 12, scale: 2
 

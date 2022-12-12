@@ -17,8 +17,8 @@ module V1
         start_at: @ride.start_at,
         end_at: @ride.end_at,
         kilometers: @ride.kilometers,
-        total_kilometer_fee: @ride.total_kilometer_fee,
-        total_time_fee: @ride.total_time_fee,
+        total_price_kilometer: @ride.total_price_kilometer,
+        total_price_time: @ride.total_price_time,
         base_fee: @ride.base_fee,
         total: @ride.total
       }.to_json

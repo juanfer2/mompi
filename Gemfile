@@ -36,6 +36,7 @@ gem 'puma'
 
 # geocoder
 gem 'geocoder'
+gem 'activerecord-postgres-earthdistance'
 
 group :test, :development do
   gem 'pry'

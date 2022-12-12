@@ -1,21 +1,25 @@
 module V1
   module Rides
     class FinishedService < ApplicationService
-      def initialize(current_driver, ride_id, end_location_latitude, end_location_longitude)
+      def initialize(current_driver, ride_id, current_location_latitude, current_location_longitude)
         @current_driver = current_driver
         @ride_id = ride_id.to_i
-        @end_location_latitude = end_location_latitude
-        @end_location_longitude = end_location_longitude
+        @current_location_latitude = current_location_latitude
+        @current_location_longitude = current_location_longitude
       end
 
       def call
+        V1::Rides::ValidateCurrentLocationService.call(current_location)
+
         ride.kilometers = distance_kilometers
-        ride.end_at = DateTime.current.utc        
-        ride.total_kilometer_fee = fees[:total_kilometer_fee]
-        ride.total_time_fee = fees[:total_time_fee]
-        ride.total = fees[:total]
+        ride.end_location_latitude = current_location.latitude
+        ride.end_location_longitude = current_location.longitude
+        ride.end_at = DateTime.current.utc
+        ride.total_price_kilometer = pricing[:total_price_kilometer]
+        ride.total_price_time = pricing[:total_price_time]
+        ride.total = pricing[:total]
         ride.status = :finished
- 
+
         raise Api::RideError.new("#{ride.errors.full_messages.join(', ')}") unless ride.save
 
         ride
@@ -29,9 +33,9 @@ module V1
         end
       end
 
-      def end_location
-        @end_location ||= begin
-          GeoLocalization.new(@end_location_latitude, @end_location_longitude)
+      def current_location
+        @current_location ||= begin
+          GeoLocalization.new(@current_location_latitude, @current_location_longitude)
         end  
       end
 
@@ -39,20 +43,12 @@ module V1
         @ride ||= @current_driver.rides.find(@ride_id)
       end
 
-      def total_kilometer_feed
-
-      end
-
-      def total_time_fee
-        
-      end
-
       def distance_kilometers
-        CalculateDistanceService.call(start_location, end_location)
+        CalculateDistanceService.call(start_location, current_location)
       end
 
-      def fees
-        V1::Rides::CalculateFeesService.call(ride)
+      def pricing
+        V1::Rides::CalculatePricingService.call(ride)
       end
     end
   end
