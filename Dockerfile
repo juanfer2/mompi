@@ -24,6 +24,9 @@ COPY Gemfile* ./
 RUN gem install bundler:1.17.3
 RUN bundle install
 
+## Config files
+RUN make copy_config
+
 EXPOSE 9292
 
 CMD ["rackup"]
