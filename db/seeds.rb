@@ -14,7 +14,7 @@ if ENV['APP_ENV'] != 'test'
   riders = (1..3).map do | i |
     rider = V1::Riders::CreateService.call(Faker::Name.name, "rider#{i}@mompi.co",
       123456)
-    puts "    -> rider: #{rider.name} with token #{rider.token} was create 👤"
+    puts "    -> rider: #{rider.name} with token: #{rider.token} was create 👤"
 
     rider
   end

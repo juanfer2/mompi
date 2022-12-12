@@ -3,9 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 
+#rake
+gem 'rake'
+
+#sinatra
 gem 'sinatra'
 gem 'sinatra-active-model-serializers'
-gem 'bcrypt'
 
 github 'sinatra/sinatra' do
   gem 'sinatra-contrib'
@@ -21,8 +24,8 @@ gem 'sysrandom'
 gem 'pg', '1.2.3'
 gem 'activerecord'
 gem 'sinatra-activerecord'
-gem 'rake'
 
+# json
 gem 'json', '~> 2.6', '>= 2.6.3'
 
 # authentication
@@ -34,13 +37,11 @@ gem 'httparty', '0.18.1'
 # puma
 gem 'puma'
 
-# geocoder
-gem 'geocoder'
-gem 'activerecord-postgres-earthdistance'
-
+# currency
 gem 'money'
 
-gem 'oj'
+# encrypted
+gem 'bcrypt'
 
 group :test, :development do
   gem 'pry'
@@ -49,6 +50,7 @@ group :test, :development do
   gem 'rack-test'
   # docker needed ssh gems
   gem 'ed25519', '1.2.4'
+
   gem 'pre-commit', '0.39.0', require: false
   gem 'pronto', '0.11.0'
   gem 'pronto-rubocop', '0.11.1', require: false
