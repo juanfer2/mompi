@@ -1,11 +1,10 @@
 require 'spec_helper'
-require_relative '../../app/models/user'
 
-RSpec.describe User, type: :model do
+RSpec.describe Rider, type: :model do
   subject { described_class }
-  context 'when has many relations' do
-    it { should have_many(:payment_sources) }
-  end
+  #context 'when has many relations' do
+  #  it { should have_many(:payment_sources) }
+  #end
 
   # it 'enum definition' do 
   #   should define_enum_for(:kind).with_values([])
@@ -15,11 +14,11 @@ RSpec.describe User, type: :model do
   #   [:hotel_collect,:virtual_collect, :auto_collect, :ayenda_rooms_collect, :credit_collect]
   # )
 
-  describe 'when user is invalid' do
-    it 'is not valid without a name' do
-      user = subject.new(name: nil)
-      expect(user).to_not be valid
-    end
+  describe 'when rider is invalid' do
+    #it 'is not valid without a name' do
+    #  user = subject.new(name: nil)
+    #  expect(user).to_not be_valid
+    #end
 
     it 'is not valid without a email' do
     end

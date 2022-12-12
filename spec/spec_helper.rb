@@ -2,14 +2,21 @@ ENV['APP_ENV'] = ENV['RACK_ENV'] ||= 'test'
 
 require 'sinatra'
 require 'sinatra/base'
+require 'sinatra/namespace'
 require 'sinatra/activerecord'
 require 'faker'
 require 'factory_bot'
 require 'rake'
 require 'pry'
 require 'rack/test'
-Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
+
+load 'Rakefile'
+
 Dir['./app/models/**/*.rb'].sort.each { |f| require f }
+Dir['./app/services/**/*.rb'].sort.each { |f| require f }
+Dir['./app/serializers/**/*.rb'].sort.each { |f| require f }
+Dir['./app/controllers/**/*.rb'].sort.each { |f| require f }
+Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
@@ -95,5 +102,13 @@ RSpec.configure do |config|
   config.include Rack::Test::Methods
   config.include RequestSpecHelper, type: :request
   config.include FactoryBot::Syntax::Methods
-  FactoryBot.find_definitions
+
+  config.before(:suite) do
+    FactoryBot.find_definitions
+    # Check this
+    if ARGV.any? { |e| e[/int/] } || ARGV.empty?
+      puts 'Reseting test database'
+      Rake::Task['db:reset'].invoke
+    end
+  end
 end
